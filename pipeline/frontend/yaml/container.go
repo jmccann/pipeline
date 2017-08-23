@@ -22,40 +22,41 @@ type (
 
 	// Container defines a container.
 	Container struct {
-		AuthConfig    AuthConfig                `yaml:"auth_config,omitempty"`
-		CapAdd        []string                  `yaml:"cap_add,omitempty"`
-		CapDrop       []string                  `yaml:"cap_drop,omitempty"`
-		Command       libcompose.Command        `yaml:"command,omitempty"`
-		Commands      libcompose.Stringorslice  `yaml:"commands,omitempty"`
-		CPUQuota      libcompose.StringorInt    `yaml:"cpu_quota,omitempty"`
-		CPUSet        string                    `yaml:"cpuset,omitempty"`
-		CPUShares     libcompose.StringorInt    `yaml:"cpu_shares,omitempty"`
-		Detached      bool                      `yaml:"detach,omitempty"`
-		Devices       []string                  `yaml:"devices,omitempty"`
-		DNS           libcompose.Stringorslice  `yaml:"dns,omitempty"`
-		DNSSearch     libcompose.Stringorslice  `yaml:"dns_search,omitempty"`
-		Entrypoint    libcompose.Command        `yaml:"entrypoint,omitempty"`
-		Environment   libcompose.SliceorMap     `yaml:"environment,omitempty"`
-		ExtraHosts    []string                  `yaml:"extra_hosts,omitempty"`
-		Group         string                    `yaml:"group,omitempty"`
-		Image         string                    `yaml:"image,omitempty"`
-		Isolation     string                    `yaml:"isolation,omitempty"`
-		Labels        libcompose.SliceorMap     `yaml:"labels,omitempty"`
-		MemLimit      libcompose.MemStringorInt `yaml:"mem_limit,omitempty"`
-		MemSwapLimit  libcompose.MemStringorInt `yaml:"memswap_limit,omitempty"`
-		MemSwappiness libcompose.MemStringorInt `yaml:"mem_swappiness,omitempty"`
-		Name          string                    `yaml:"name,omitempty"`
-		NetworkMode   string                    `yaml:"network_mode,omitempty"`
-		IpcMode       string                    `yaml:"ipc_mode,omitempty"`
-		Networks      libcompose.Networks       `yaml:"networks,omitempty"`
-		Privileged    bool                      `yaml:"privileged,omitempty"`
-		Pull          bool                      `yaml:"pull,omitempty"`
-		ShmSize       libcompose.MemStringorInt `yaml:"shm_size,omitempty"`
-		Ulimits       libcompose.Ulimits        `yaml:"ulimits,omitempty"`
-		Volumes       libcompose.Volumes        `yaml:"volumes,omitempty"`
-		Secrets       Secrets                   `yaml:"secrets,omitempty"`
-		Constraints   Constraints               `yaml:"when,omitempty"`
-		Vargs         map[string]interface{}    `yaml:",inline"`
+		AuthConfig      AuthConfig                `yaml:"auth_config,omitempty"`
+		CapAdd          []string                  `yaml:"cap_add,omitempty"`
+		CapDrop         []string                  `yaml:"cap_drop,omitempty"`
+		Command         libcompose.Command        `yaml:"command,omitempty"`
+		Commands        libcompose.Stringorslice  `yaml:"commands,omitempty"`
+		CPUQuota        libcompose.StringorInt    `yaml:"cpu_quota,omitempty"`
+		CPUSet          string                    `yaml:"cpuset,omitempty"`
+		CPUShares       libcompose.StringorInt    `yaml:"cpu_shares,omitempty"`
+		Detached        bool                      `yaml:"detach,omitempty"`
+		Devices         []string                  `yaml:"devices,omitempty"`
+		DNS             libcompose.Stringorslice  `yaml:"dns,omitempty"`
+		DNSSearch       libcompose.Stringorslice  `yaml:"dns_search,omitempty"`
+		Entrypoint      libcompose.Command        `yaml:"entrypoint,omitempty"`
+		Environment     libcompose.SliceorMap     `yaml:"environment,omitempty"`
+		ExtraHosts      []string                  `yaml:"extra_hosts,omitempty"`
+		Group           string                    `yaml:"group,omitempty"`
+		Image           string                    `yaml:"image,omitempty"`
+		Isolation       string                    `yaml:"isolation,omitempty"`
+		Labels          libcompose.SliceorMap     `yaml:"labels,omitempty"`
+		MemLimit        libcompose.MemStringorInt `yaml:"mem_limit,omitempty"`
+		MemSwapLimit    libcompose.MemStringorInt `yaml:"memswap_limit,omitempty"`
+		MemSwappiness   libcompose.MemStringorInt `yaml:"mem_swappiness,omitempty"`
+		Name            string                    `yaml:"name,omitempty"`
+		DisableNetworks bool                      `yaml:"disable_networks,omitempty"`
+		NetworkMode     string                    `yaml:"network_mode,omitempty"`
+		IpcMode         string                    `yaml:"ipc_mode,omitempty"`
+		Networks        libcompose.Networks       `yaml:"networks,omitempty"`
+		Privileged      bool                      `yaml:"privileged,omitempty"`
+		Pull            bool                      `yaml:"pull,omitempty"`
+		ShmSize         libcompose.MemStringorInt `yaml:"shm_size,omitempty"`
+		Ulimits         libcompose.Ulimits        `yaml:"ulimits,omitempty"`
+		Volumes         libcompose.Volumes        `yaml:"volumes,omitempty"`
+		Secrets         Secrets                   `yaml:"secrets,omitempty"`
+		Constraints     Constraints               `yaml:"when,omitempty"`
+		Vargs           map[string]interface{}    `yaml:",inline"`
 	}
 )
 

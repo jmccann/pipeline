@@ -103,7 +103,7 @@ func (e *engine) Exec(proc *backend.Step) error {
 		return err
 	}
 
-	if len(proc.NetworkMode) == 0 {
+	if len(proc.NetworkMode) == 0 && !proc.DisableNetworks {
 		for _, net := range proc.Networks {
 			err = e.client.NetworkConnect(ctx, net.Name, proc.Name, &network.EndpointSettings{
 				Aliases: net.Aliases,

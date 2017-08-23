@@ -7,7 +7,7 @@ import (
 	"github.com/franela/goblin"
 )
 
-func xTestParse(t *testing.T) {
+func TestParse(t *testing.T) {
 	g := goblin.Goblin(t)
 
 	g.Describe("Parser", func() {
@@ -32,10 +32,15 @@ func xTestParse(t *testing.T) {
 				g.Assert(out.Pipeline.Containers[0].Commands).Equal(yaml.Stringorslice{"go install", "go test"})
 				g.Assert(out.Pipeline.Containers[1].Name).Equal("build")
 				g.Assert(out.Pipeline.Containers[1].Image).Equal("golang")
+				g.Assert(out.Pipeline.Containers[1].NetworkMode).Equal("container:name")
+				g.Assert(out.Pipeline.Containers[1].DisableNetworks).Equal(false)
 				g.Assert(out.Pipeline.Containers[1].Commands).Equal(yaml.Stringorslice{"go build"})
-				g.Assert(out.Pipeline.Containers[2].Name).Equal("notify")
-				g.Assert(out.Pipeline.Containers[2].Image).Equal("slack")
-				g.Assert(out.Pipeline.Containers[2].NetworkMode).Equal("container:name")
+				g.Assert(out.Pipeline.Containers[2].Name).Equal("docker")
+				g.Assert(out.Pipeline.Containers[2].Image).Equal("plugins/docker")
+				g.Assert(out.Pipeline.Containers[2].DisableNetworks).Equal(true)
+				g.Assert(out.Pipeline.Containers[3].Name).Equal("notify")
+				g.Assert(out.Pipeline.Containers[3].Image).Equal("slack")
+				g.Assert(out.Pipeline.Containers[3].DisableNetworks).Equal(false)
 				g.Assert(out.Labels["com.example.team"]).Equal("frontend")
 				g.Assert(out.Labels["com.example.type"]).Equal("build")
 			})
@@ -76,6 +81,15 @@ pipeline:
     commands:
       - go build
     when:
+      event: push
+  docker:
+    image: plugins/docker
+    repo: drone/drone
+    secrets: [ docker_username, docker_password ]
+    tag: [ latest ]
+    disable_networks: true
+    when:
+      branch: master
       event: push
   notify:
     image: slack
